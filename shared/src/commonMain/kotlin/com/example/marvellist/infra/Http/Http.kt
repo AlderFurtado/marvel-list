@@ -1,4 +1,4 @@
-package com.example.marvellist.data.datasource
+package com.example.marvellist.infra.Http
 
 interface Http{
     suspend fun <T , V> get(url: String, options:V): T

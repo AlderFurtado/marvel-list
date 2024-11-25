@@ -1,4 +1,4 @@
-package com.example.marvellist.data.datasource
+package com.example.marvellist.infra.Http
 
 import io.ktor.client.HttpClient
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
