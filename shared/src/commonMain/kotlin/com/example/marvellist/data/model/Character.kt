@@ -1,5 +1,8 @@
 package com.example.marvellist.data.model
 
+import kotlinx.serialization.Serializable
+
+@Serializable
 data class Character(
     val id: Int,
     val name: String,
@@ -9,6 +12,7 @@ data class Character(
     val resourceURI: String,
     val comics: Comic,
     val series: Serie,
+    val stories: Story,
     val events: Event,
     val urls: List<Url>
 )
