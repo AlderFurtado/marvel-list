@@ -18,7 +18,7 @@ class HttpAdapter: Http {
     }
 
     override suspend fun <HttpResponse, V> get(url: String, options: V): HttpResponse {
-        return client.get(url,options as HttpRequestBuilder.() -> Unit) as HttpResponse
+        return client.get(url) as HttpResponse
     }
 
     override suspend fun  <HttpResponse, V> post(url: String, options: V): HttpResponse {

@@ -1,5 +1,8 @@
 package com.example.marvellist.data.model
 
+import kotlinx.serialization.Serializable
+
+@Serializable
 data class MarvelResponse(
     val code: Int,
     val status: String,
