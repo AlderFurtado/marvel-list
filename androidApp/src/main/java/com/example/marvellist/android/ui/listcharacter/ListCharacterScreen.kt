@@ -70,5 +70,5 @@ private suspend fun loadMoreItems(items: MutableList<CharacterBasicInfo>,offset:
 }
 
 private suspend fun getCharacterNameImageList(offset: Int, limit:Int): List<CharacterBasicInfo>{
-    return Factories.getCharacterNameImageListUseCase().invoke(offset,limit)
+    return Factories.getCharacterBasicInfoListUseCase().invoke(offset,limit)
 }
