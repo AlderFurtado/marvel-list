@@ -11,18 +11,25 @@ import SwiftUI
 struct HomeView: View {
     let categories = ["Characters","Comics","Events","Stories","Creators","Series"]
     var body: some View {
-        Text("Categories")
-            .font(.largeTitle)
-        .bold()
-        List(categories, id: \.self){ category in
-            Text(category)
-                .padding(.vertical,8)
-                .font(.title2)
-               
+        NavigationView {
+            VStack {
+        
+            
+                    List(categories, id: \.self){ category in
+                        NavigationLink(destination: CharacterListView()) {
+                            Text(category)
+                                .padding(.vertical,8)
+                            .font(.title2)
+                        }
+                    }
+                    .listStyle(PlainListStyle()) // Use a plain style to remove
+                         .padding(0)
+                     .padding(.leading,16)
+                     .navigationTitle("Categories")
+            }
         }
-        .listStyle(PlainListStyle()) // Use a plain style to remove
-             .padding(0)
-             .padding(.leading,16)
+   
+       
     }
 }
 
