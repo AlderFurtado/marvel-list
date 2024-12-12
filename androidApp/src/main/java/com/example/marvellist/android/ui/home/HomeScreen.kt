@@ -11,6 +11,7 @@ import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -18,8 +19,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.unit.dp
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable()
-fun HomeScreen() {
+fun HomeScreen(
+    navigationToListCharacterScreen: () -> Unit
+) {
     val options = mutableListOf("characters", "comics", "creators", "events", "series", "stories")
     val configuration = LocalConfiguration.current
     val screenWidth = configuration.screenWidthDp.dp
@@ -38,10 +42,12 @@ fun HomeScreen() {
                     .height(300.dp)
                     .padding(vertical = 20.dp)
                 ,
-                elevation = CardDefaults.cardElevation(defaultElevation = 6.dp)
+                elevation = CardDefaults.cardElevation(defaultElevation = 6.dp),
+                onClick = {
+                    navigationToListCharacterScreen()
+                }
             ) {
                 Box {
-//                    Image(painter = , contentDescription = )
                     Column(
                         modifier = Modifier
                             .fillMaxSize()
