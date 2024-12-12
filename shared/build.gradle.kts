@@ -79,22 +79,26 @@ buildkonfig {
     defaultConfigs {
         buildConfigField(STRING, "API_KEY_PRIVATE", localProperties["API_KEY_PRIVATE"].toString())
         buildConfigField(STRING, "API_KEY_PUBLIC", localProperties["API_KEY_PUBLIC"].toString())
+        buildConfigField(STRING, "MD5_KEY", localProperties["MD5_KEY"].toString())
     }
     // flavor is passed as a first argument of defaultConfigs
     defaultConfigs("dev") {
         buildConfigField(STRING, "API_KEY_PRIVATE", localProperties["API_KEY_PRIVATE"].toString())
         buildConfigField(STRING, "API_KEY_PUBLIC", localProperties["API_KEY_PUBLIC"].toString())
+        buildConfigField(STRING, "MD5_KEY", localProperties["MD5_KEY"].toString())
     }
 
     targetConfigs {
         create("android") {
             buildConfigField(STRING, "API_KEY_PRIVATE", localProperties["API_KEY_PRIVATE"].toString())
             buildConfigField(STRING, "API_KEY_PUBLIC", localProperties["API_KEY_PUBLIC"].toString())
+            buildConfigField(STRING, "MD5_KEY", localProperties["MD5_KEY"].toString())
         }
 
         create("ios") {
             buildConfigField(STRING, "API_KEY_PRIVATE", localProperties["API_KEY_PRIVATE"].toString())
             buildConfigField(STRING, "API_KEY_PUBLIC", localProperties["API_KEY_PUBLIC"].toString())
+            buildConfigField(STRING, "MD5_KEY", localProperties["MD5_KEY"].toString())
         }
     }
     // flavor is passed as a first argument of targetConfigs
@@ -102,11 +106,13 @@ buildkonfig {
         create("ios") {
             buildConfigField(STRING, "API_KEY_PRIVATE", localProperties["API_KEY_PRIVATE"].toString())
             buildConfigField(STRING, "API_KEY_PUBLIC", localProperties["API_KEY_PUBLIC"].toString())
+            buildConfigField(STRING, "MD5_KEY", localProperties["MD5_KEY"].toString())
         }
 
         create("android") {
             buildConfigField(STRING, "API_KEY_PRIVATE", localProperties["API_KEY_PRIVATE"].toString())
             buildConfigField(STRING, "API_KEY_PUBLIC", localProperties["API_KEY_PUBLIC"].toString())
+            buildConfigField(STRING, "MD5_KEY", localProperties["MD5_KEY"].toString())
         }
     }
 }

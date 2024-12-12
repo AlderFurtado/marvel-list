@@ -12,9 +12,9 @@ class MarvelApiImplTest {
 
     @Test
     fun getCharacters() = runBlocking{
-        httpAdapter = HttpAdapter()
+        httpAdapter = HttpAdapter("https://gateway.marvel.com")
         marvelApiImpl = MarvelApiImpl(httpAdapter)
-        val data = marvelApiImpl.getCharacters()
+        val data = marvelApiImpl.getCharacters(0,100)
         assertTrue(true)
     }
 }
