@@ -28,7 +28,6 @@ struct CharacterListView: View {
                 }
             }
         }
-
     }
     
     func replaceHttpToHttps(input: String) -> String{
@@ -44,9 +43,8 @@ struct CharacterListView: View {
                                 if let image = phase.image {
                                     image
                                         .resizable()
-                                        .scaledToFit()
                                         .cornerRadius(4)
-                                        .frame(width: 130, height: 130)
+                                        .frame(width: 140, height: 140)
                                 } else if phase.error != nil {
                                     Text("Failed to load image")
                                 } else {
@@ -80,9 +78,10 @@ struct CharacterListView: View {
                             }.buttonStyle(PlainButtonStyle())
                         }
                     })
-                
-                }
-             
+                    .padding(4)
+                }.listRowInsets(EdgeInsets())
+                    .frame(height:150)
+                  
             }.task {
                 getCharacterList()
             }
@@ -91,6 +90,6 @@ struct CharacterListView: View {
     }
 }
 //
-//#Preview {
-//    SwiftUIView()
-//}
+#Preview {
+    CharacterListView()
+}
