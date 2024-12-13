@@ -13,23 +13,19 @@ struct HomeView: View {
     var body: some View {
         NavigationView {
             VStack {
-        
-            
-                    List(categories, id: \.self){ category in
-                        NavigationLink(destination: CharacterListView()) {
-                            Text(category)
-                                .padding(.vertical,8)
-                            .font(.title2)
-                        }
+                List(categories, id: \.self){ category in
+                    NavigationLink(destination: CharacterListView()) {
+                        Text(category)
+                            .padding(.vertical,8)
+                        .font(.title2)
                     }
-                    .listStyle(PlainListStyle()) // Use a plain style to remove
-                         .padding(0)
-                     .padding(.leading,16)
-                     .navigationTitle("Categories")
+                }
+                .listStyle(PlainListStyle()) // Use a plain style to remove
+                     .padding(0)
+                 .padding(.leading,16)
+                 .navigationTitle("Categories")
             }
         }
-   
-       
     }
 }
 
