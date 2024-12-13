@@ -12,17 +12,21 @@ import shared
 struct CharacterListView: View {
     
     @State private var characterBasicInfoList: [CharacterBasicInfo] = []
+    @State var offset = Int32(0)
+    @State private var isLoadingMore = false
     
-    func getCharacterList(){
+    let limit = Int32(100)
+    
+    func getCharacterList(offsetLocal: Int32) async {
         DispatchQueue.main.async {
             Task {
                 do {
-                    let data = try await Factories().getCharacterBasicInfoListUseCase().invoke(offset: 0, limit: 100)
+                    let data = try await Factories().getCharacterBasicInfoListUseCase().invoke(offset: offsetLocal, limit: limit)
                     let dataT = data.map{ character in
                         CharacterBasicInfo(name: character.name, imageUrl: replaceHttpToHttps(input: character.imageUrl), description: character.description_, lastModified: character.lastModified, numberOfEvents: character.numberOfEvents, numberOfComics: character.numberOfComics, numberOfSeries: character.numberOfSeries, numberOfStories: character.numberOfStories)
                     }
-                    NSLog("DataT", dataT)
-                    self.characterBasicInfoList = dataT
+                    NSLog("offset = \(offset)")
+                    self.characterBasicInfoList += dataT
                 } catch {
                     print("Failed to fetch data: \(error.localizedDescription)")
                 }
@@ -32,6 +36,15 @@ struct CharacterListView: View {
     
     func replaceHttpToHttps(input: String) -> String{
         return input.replacingOccurrences(of: "http", with: "https")
+    }
+    
+    func loadMoreCharacters() async {
+        if(!isLoadingMore){
+            self.offset += limit
+            self.isLoadingMore = true
+            await getCharacterList(offsetLocal: offset)
+            self.isLoadingMore = false
+        }
     }
     
     var body: some View {
@@ -79,17 +92,31 @@ struct CharacterListView: View {
                         }
                     })
                     .padding(4)
-                }.listRowInsets(EdgeInsets())
+                }
+                    .listRowInsets(EdgeInsets())
                     .frame(height:150)
-                  
+                    .onAppear {
+                        if item == characterBasicInfoList.last {
+                            Task {
+                                await loadMoreCharacters()
+                            }
+                        }
+                    }
+               
             }.task {
-                getCharacterList()
+                await getCharacterList(offsetLocal: offset)
             }
+            //TODO fix this
+            if isLoadingMore {
+                    ProgressView()
+            }
+          
         }
         .navigationTitle("Characters")
     }
 }
-//
+
+
 #Preview {
     CharacterListView()
 }
