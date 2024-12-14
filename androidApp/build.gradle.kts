@@ -50,4 +50,5 @@ dependencies {
     implementation(libs.coil.compose)
     implementation(libs.coil.network.okhttp)
     implementation(libs.navigation.compose)
+    implementation(libs.viewmodel.compose)
 }
