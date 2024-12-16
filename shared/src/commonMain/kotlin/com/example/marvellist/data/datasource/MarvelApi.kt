@@ -4,4 +4,6 @@ import com.example.marvellist.data.model.MarvelResponse
 
 interface MarvelApi {
     suspend fun getCharacters(offset: Int, limit: Int): MarvelResponse
+
+    suspend fun getCharacterById(id:String): MarvelResponse
 }

@@ -7,7 +7,7 @@ import com.example.marvellist.domain.model.CharacterBasicInfo
 class GetCharacterBasicInfoListUseCase(private val repository: MarvelRepository) {
 
     suspend fun invoke(offset: Int = OFFSET_DEFAULT, limit: Int = LIMIT_DEFAULT): List<CharacterBasicInfo> {
-        return repository.getCharacter(offset, limit).map {
+        return repository.getCharacters(offset, limit).map {
             CharacterToCharacterNameImage.transform(it)
         }
     }

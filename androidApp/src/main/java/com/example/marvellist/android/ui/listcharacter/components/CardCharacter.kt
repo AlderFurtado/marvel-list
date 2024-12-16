@@ -32,7 +32,10 @@ import coil3.request.crossfade
 import com.example.marvellist.domain.model.CharacterBasicInfo
 
 @Composable
-fun CardCharacter(characterBasicInfo: CharacterBasicInfo){
+fun CardCharacter(
+    characterBasicInfo: CharacterBasicInfo,
+    onClick: (id:String) -> Unit
+){
     val imageUrlCompleted =
         "${characterBasicInfo.imageUrl}/portrait_xlarge.jpg".replace("http", "https")
     val marvelRed = Color(red = 211 / 255f, green = 47 / 255f, blue = 47 / 255f)
@@ -43,8 +46,6 @@ fun CardCharacter(characterBasicInfo: CharacterBasicInfo){
             .height(160.dp)
             .padding(8.dp)
     ) {
-
-        Log.d("IMAGE_CHARACTER", imageUrlCompleted)
         AsyncImage(
             model = ImageRequest.Builder(LocalContext.current)
                 .data(imageUrlCompleted)
@@ -95,7 +96,9 @@ fun CardCharacter(characterBasicInfo: CharacterBasicInfo){
                 verticalAlignment = Alignment.Bottom,
                 modifier = Modifier.fillMaxSize()
             ) {
-                Button(onClick = { /*TODO*/ },
+                Button(onClick = {
+                    onClick(characterBasicInfo.id.toString())
+                },
                     shape = RoundedCornerShape(4.dp),
                     modifier = Modifier
                         .padding(4.dp),

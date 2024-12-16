@@ -11,7 +11,6 @@ class MarvelApiImpl(private val http: Http) : MarvelApi {
 
     companion object {
         val publicKey = BuildKonfig.API_KEY_PUBLIC
-        val privateKey = BuildKonfig.API_KEY_PRIVATE
         const val ts = 1
     }
 
@@ -19,6 +18,20 @@ class MarvelApiImpl(private val http: Http) : MarvelApi {
         NapierAdapter.logDebug("getCharacters(offset=$offset, limit=$limit)")
 
         val url = stringUrlBuilder("v1/public/characters", offset, limit)
+
+        NapierAdapter.logDebug("url = $url")
+        val data = http.get<HttpResponse, () -> Unit>(url){}
+        val body: MarvelResponse = data.body()
+        NapierAdapter.logDebug(body.toString())
+        return body.also {
+            NapierAdapter.logDebug("")
+        }
+    }
+
+    override suspend fun getCharacterById(id: String): MarvelResponse {
+        NapierAdapter.logDebug("getCharacterById(id=$id)")
+
+        val url = stringUrlBuilder("v1/public/characters/$id", 0, 1)
 
         NapierAdapter.logDebug("url = $url")
         val data = http.get<HttpResponse, () -> Unit>(url){}

@@ -20,7 +20,8 @@ fun ListCharacterContent(
     items: List<CharacterBasicInfo>,
     isLoading: Boolean,
     isLoadingMoreItems: Boolean,
-    listState: LazyListState
+    listState: LazyListState,
+    navigationToDetailsScreen: (id:String) -> Unit,
 ) {
     Column {
         Text(
@@ -35,8 +36,10 @@ fun ListCharacterContent(
         LazyColumn(
             state = listState,
         ) {
-            items(items, key = { it.name }) {
-                CardCharacter(it)
+            items(items, key = { it.name }) { it ->
+                CardCharacter(it){
+                    navigationToDetailsScreen(it)
+                }
             }
 
             if (isLoadingMoreItems) {
