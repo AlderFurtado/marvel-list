@@ -1,6 +1,7 @@
 package com.example.marvellist.domain.model
 
 data class CharacterBasicInfo(
+    val id: Int,
     val name: String,
     val imageUrl: String,
     val description: String?,
