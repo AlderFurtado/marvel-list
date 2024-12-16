@@ -10,7 +10,8 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 
 @Composable
 fun ListCharacterScreen(
-    viewModel: ListCharacterViewModel = viewModel()
+    viewModel: ListCharacterViewModel = viewModel(),
+    navigationToDetailsScreen: (id:String) -> Unit,
 ){
     val uiState = viewModel.uiState.collectAsState()
 
@@ -34,6 +35,7 @@ fun ListCharacterScreen(
         items = uiState.value.items,
         isLoading = uiState.value.isLoading,
         isLoadingMoreItems = uiState.value.isLoadingMoreItems,
-        listState = listState
+        listState = listState,
+        navigationToDetailsScreen
     )
 }

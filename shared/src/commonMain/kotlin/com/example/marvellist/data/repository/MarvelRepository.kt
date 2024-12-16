@@ -4,5 +4,6 @@ import com.example.marvellist.data.model.Character
 
 interface MarvelRepository {
 
-    suspend fun getCharacter(offset: Int, limit: Int): List<Character>
+    suspend fun getCharacters(offset: Int, limit: Int): List<Character>
+    suspend fun getCharacterById(id:String): Character
 }

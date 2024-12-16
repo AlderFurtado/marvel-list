@@ -5,6 +5,7 @@ import com.example.marvellist.domain.model.CharacterBasicInfo
 
 object CharacterToCharacterNameImage : Mapper<Character, CharacterBasicInfo> {
     override fun transform(input: Character): CharacterBasicInfo = CharacterBasicInfo(
+        id = input.id,
         name = input.name,
         imageUrl = input.thumbnail.path,
         description = input.description,
